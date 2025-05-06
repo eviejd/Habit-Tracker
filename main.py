@@ -39,10 +39,6 @@ class Habit():
         pass
 
 
-habit1 = Habit('Run', 'Go for a run')
-habit1.mark_complete(datetime.now().date())
-
-
 class User():
     def __init__(self, username):
         self.username = username
@@ -80,9 +76,36 @@ class HabitTrackerApp():
     def register():
         pass
 
-    def display_menu():
-        print("----------\nWelcome to the Habit Tracker\n---------")
+    def display_menu(font):
+        print(
+            "Please select one of the \nfollowing options:\n-----------------------------")
+        print("1. Register new user\n2. Log in\n3. Quit\n-----------------------------")
 
 
+# Testing
+# habitTracker = HabitTrackerApp("guest")
+# habit1 = Habit('Walk', 'Go for a run')
+# habit1.mark_complete()
+# habitTracker.display_menu()
+
+
+# MAIN LOOP
 habitTracker = HabitTrackerApp("guest")
-habitTracker.display_menu()
+
+print("-----------------------------------\nWELCOME TO EVIE'S HABIT TRACKER APP\n-----------------------------------")
+choice = 0
+while choice not in [1, 2, 3]:
+    habitTracker.display_menu()
+    choice = int(input("Enter your choice: "))
+
+    if choice == 1:
+        habitTracker.register()
+
+    elif choice == 2:
+        habitTracker.login()
+
+    elif choice == 3:
+        print("\nProgram terminating...")
+
+    else:
+        print("\nPlease enter a valid choice\n")
