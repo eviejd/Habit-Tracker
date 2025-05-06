@@ -5,7 +5,16 @@
             {
                 "name": "Run",
                 "description": "Run fast",
-                "dates_completed": []
+                "dates_completed": [
+                    "2025-05-06"
+                ]
+            },
+            {
+                "name": "Walk dog",
+                "description": "Take the dog for a walk",
+                "dates_completed": [
+                    "2025-05-06"
+                ]
             }
         ]
     }
