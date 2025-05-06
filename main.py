@@ -34,17 +34,17 @@ class Habit():
         self.dates_completed = sorted(self.dates_completed)
         for date in self.dates_completed:
             self.streak += 1
-        print(f"Your current streak for '{self.name}' is: {self.streak}")
+        print(f"\nYour current streak for '{self.name}' is: {self.streak}")
 
     def get_completion_rate(self):
         if not self.dates_completed:
-            print("No completions yet")
+            print("\nNo completions yet")
             return
         start_date = min(self.dates_completed)
         today = date.today()
         total_days = (today - start_date).days + 1
         completed_days = len(self.dates_completed)
-        return f"You have completed {completed_days} out of {total_days}"
+        return f"\nYou have completed {completed_days} out of {total_days}"
 
 
 class User():
@@ -70,8 +70,11 @@ class User():
 
     def view_summary(self):
         for habit in self.__habits:
-            last_completed = sorted(habit.dates_completed)[0]
-            print(f"\n{habit.name} last completed on {last_completed}\n")
+            if habit.dates_completed:
+                last_completed = sorted(habit.dates_completed)[-1]
+                print(f"\n{habit.name} last completed on {last_completed}\n")
+            else:
+                print(f"\n{habit.name} has not yet been completed")
 
     def get_username(self):
         username = self.__username
@@ -100,7 +103,7 @@ class HabitTrackerApp():
                 self.users.append(user)
 
         except FileNotFoundError:
-            print("No saved data found. Starting fresh.")
+            print("\nNo saved data found. Starting fresh.")
 
     def save_data(self):
         data = []
@@ -118,8 +121,8 @@ class HabitTrackerApp():
                 user_data["habits"].append(habit_data)
             data.append(user_data)
 
-            with open("habit_data.json", "w") as file:
-                json.dump(data, file, indent=4)
+        with open("habit_data.json", "w") as file:
+            json.dump(data, file, indent=4)
 
     def run(self):
         self.load_data()
@@ -148,18 +151,16 @@ class HabitTrackerApp():
             if user.get_username() == userName:
                 current_user = user
                 choice = 0
-                while choice not in [1, 2, 3, 4, 5, 6]:
+                while choice not in [1, 2, 3, 4, 5, 6, 7]:
                     self.display_loggedin_menu()
                     choice = int(input("Please enter your choice: "))
                     if choice == 1:
                         current_user.view_summary()
                         choice = 0
-                        self.display_loggedin_menu()
 
                     elif choice == 2:
                         current_user.add_habit()
                         choice = 0
-                        self.display_loggedin_menu()
 
                     elif choice == 3:
                         habit_name = input("Which habit did you complete? ")
@@ -169,39 +170,49 @@ class HabitTrackerApp():
                         else:
                             print("Habit not found")
                         choice = 0
-                        self.display_loggedin_menu()
 
                     elif choice == 4:
                         habit_name = input(
-                            "Which habit streak do you wish to view? ")
+                            "Which habit streak do you want to view? ")
                         habit = current_user.find_habit(habit_name)
                         if habit:
                             habit.get_streak()
                         else:
                             print("Habit not found")
                         choice = 0
-                        self.display_loggedin_menu()
 
                     elif choice == 5:
-                        current_user.remove_habit()
+                        habit_name = input(
+                            "Which habit do you want to remove? ")
+                        current_user.remove_habit(habit_name)
                         choice = 0
-                        self.display_loggedin_menu()
 
                     elif choice == 6:
+                        habit_name = input(
+                            "Which habit do you want the completion rate for? ")
+                        habit = current_user.find_habit(habit_name)
+                        if habit:
+                            print(habit.get_completion_rate())
+                        else:
+                            print("Habit not found")
+                        choice = 0
+
+                    elif choice == 7:
                         self.save_data()
                         print("Progress saved. Logging out.")
                         return
 
                     else:
                         print("Please enter a valid number")
-            else:
+
+                    return
                 print("Username not found")
 
     def display_loggedin_menu(self):
         print(
             "Please select one of the \nfollowing options:\n-----------------------------")
         print(
-            "1. View habits\n2. Add new habit\n3. Mark habit complete\n4. View streak\n5. Delete habit\n6. Save and Logout\n-----------------------------")
+            "1. View habits\n2. Add new habit\n3. Mark habit complete\n4. View streak\n5. Delete habit\n6. View completion rate\n 7. Save and Logout\n-----------------------------")
 
     def register(self):
         userName = input("Please enter a username: ")

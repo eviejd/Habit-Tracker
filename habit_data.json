@@ -1,0 +1,12 @@
+[
+    {
+        "username": "Evie",
+        "habits": [
+            {
+                "name": "Run",
+                "description": "Run fast",
+                "dates_completed": []
+            }
+        ]
+    }
+]
