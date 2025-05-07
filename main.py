@@ -1,3 +1,13 @@
+# --------------------------------------------
+# Author: Evie
+# Project: Habit Tracker App
+# Copyright (c) 2025 Evie
+#
+# This file is for personal or educational viewing only.
+# Do NOT copy, reuse, modify, or redistribute without
+# explicit permission from the author.
+# --------------------------------------------
+
 import json
 from datetime import datetime, date
 
@@ -208,7 +218,7 @@ class HabitTrackerApp():
         print(
             "\n-----------------------------\nPlease select one of the \nfollowing options:\n-----------------------------")
         print(
-            "1. View habits\n2. Add new habit\n3. Mark habit complete\n4. View streak\n5. Delete habit\n6. View completion rate\n7. Save and Logout\n-----------------------------")
+            "1. View habits\n2. Add new habit\n3. Mark habit complete\n4. View streak\n5. Delete habit\n6. View completion rate\n7. Save and Logout\n-----------------------------\n")
 
     def register(self):
         userName = input("Please enter a username: ")
