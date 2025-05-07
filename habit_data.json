@@ -13,7 +13,15 @@
                 "name": "Walk dog",
                 "description": "Take the dog for a walk",
                 "dates_completed": [
-                    "2025-05-06"
+                    "2025-05-06",
+                    "2025-05-07"
+                ]
+            },
+            {
+                "name": "Practice coding",
+                "description": "and commit to github",
+                "dates_completed": [
+                    "2025-05-07"
                 ]
             }
         ]
