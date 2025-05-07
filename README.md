@@ -15,3 +15,7 @@ A simple command-line habit tracker built with Python. This app allows users to 
 - 💾 Save and load user data using JSON
 
 ---
+
+**© 2025 Evie Durdin**  
+This code is made available for demonstration purposes only.  
+Unauthorized copying, use, or redistribution is strictly prohibited.
