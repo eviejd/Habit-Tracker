@@ -1,5 +1,5 @@
 # --------------------------------------------
-# Author: Evie
+# Author: Evie Durdin
 # Project: Habit Tracker App
 # Copyright (c) 2025 Evie
 #
